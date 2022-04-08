@@ -1,0 +1,48 @@
+
+/** QUERY */
+query MyQuery {
+    anggota(where: {keterangans: {Status: {_eq: true}}}) {
+      nama
+    }
+  }
+  
+  mutation InsertData1($object: keterangan_insert_input!) {
+    insert_keterangan_one(object: $object) {
+      id
+    }
+  }
+  
+  mutation InsertData2($object: keterangan_insert_input!) {
+    insert_keterangan_one(object: $object) {
+      id
+    }
+  }
+  
+  mutation UpdateData {
+    update_keterangan(where: {Status: {_eq: false}}, _set: {Status: true}) {
+      returning {
+        id_anggota
+        Pelajaran
+        Nilai
+        Status
+      }
+    }
+  }
+  
+  /** QUERY VARIABLE INSERT DATA*/
+  {
+    "object": {
+      "Pelajaran": "Sistem Informasi",
+      "Nilai": 90,
+      "Status": true,
+      "id_anggota": 3
+    }
+  }
+  {
+    "object": {
+      "Pelajaran": "React",
+      "Nilai": 55,
+      "Status": false,
+      "id_anggota": 3
+    }
+  }
